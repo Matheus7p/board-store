@@ -10,13 +10,23 @@ app.get("/", function (req, res) {
     res.sendFile('/index.html', { root: __dirname });
 })
 
-app.get("/boards", function (req, res) {
-    res.sendFile('/pages/boards.html', { root: __dirname });
-})
 
 app.get("/requests", function (req, res) {
     res.sendFile('/pages/requests.html', { root: __dirname });
 })
+
+app.get("/fdpPage", function (req, res) {
+    res.sendFile('/pages/product_fdp.html', { root: __dirname });
+})
+
+app.get("/warPage", function (req, res) {
+    res.sendFile('/pages/product_war.html', { root: __dirname });
+})
+
+app.get("/perfil7Page", function (req, res) {
+    res.sendFile('/pages/product_perfil7.html', { root: __dirname });
+})
+
 
 
 let server = app.listen(8081, function () {

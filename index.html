@@ -18,13 +18,10 @@
                 <a class="navText" aria-current="page" href="/">Board Store</a>
             </li>
             <li class="nav-item">
-                <a class="navText" href="/boards">Tabuleiros</a>
-            </li>
-            <li class="nav-item">
                 <a class="navText" href="/requests">Pedidos</a>
             </li>
             <button class="cartBtn justify-content-end" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-            aria-controls="offcanvasRight">
+                aria-controls="offcanvasRight">
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-cart4"
                     viewBox="0 0 16 16">
                     <path
@@ -34,11 +31,76 @@
         </ul>
     </header>
 
+    <Main>
+        <div class="cardsBoardsGroup">
+            <div class="cardProduct">
+                <a href="/fdpPage">
+                    <div class="row justify-content-center">
+                        <img class="imgBoards" src="/assets/fdpBoardGame.png" alt="">
+                    </div>
+                    <div class="row">
+                        <h3 class="titleProduct">F.D.P. <br> Foi de Próposito</h3>
+                    </div>
+                    <div class="row">
+                        <h3 class="valueProduct" >
+                            Valor: R$ 79,99
+                        </h3>
+                    </div>
+                    
+                </a>
+                <div class="row">
+                    <button class="btn btnAddCart">Adicionar ao Carrinho</button>
+                </div>
+            </div>
+
+            <div class="cardProduct">
+                <a href="/warPage">
+                    <div class="row justify-content-center">
+                        <img class="imgBoardsWar" src="/assets/warBoardGame.png" alt="">
+                    </div>
+                    <div class="row">
+                        <h3 class="titleProduct">War</h3>
+                    </div>
+                    <div class="row">
+                        <h3 class="valueProduct" >
+                            Valor: R$ 129,99
+                        </h3>
+                    </div>
+                    
+                </a>
+                <div class="row">
+                    <button class="btn btnAddCart">Adicionar ao Carrinho</button>
+                </div>
+            </div>
+
+            <div class="cardProduct">
+                <a href="/perfil7page">
+                    <div class="row justify-content-center">
+                        <img class="imgBoardsPerfil7" src="/assets/perfil7BoardGame.png" alt="">
+                    </div>
+                    <div class="row">
+                        <h3 class="titleProduct">Perfil 7</h3>
+                    </div>
+                    <div class="row">
+                        <h3 class="valueProduct">
+                            Valor: R$ 99,99
+                        </h3>
+                    </div>
+                    
+                </a>
+                <div class="row">
+                    <button class="btn btnAddCart">Adicionar ao Carrinho</button>
+                </div>
+            </div>
+
+           
+        </div>
+    </Main>
 
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title" style="color: white;" id="offcanvasRightLabel">
-                Offcanvas right
+                Carrinho
             </h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
