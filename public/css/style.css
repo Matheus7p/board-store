@@ -21,6 +21,7 @@
    font-weight: 400;
    font-family: 'Roboto';
    letter-spacing: 2px;
+   transition: 1s ease-out;
 }
 
 .navText:hover{
@@ -29,4 +30,15 @@
 
 .nav-item{
     padding: 1%;
+}
+
+.cartBtn{
+    color: white;
+    border: none;
+    height: 53px;
+   
+}
+
+.cartBtn:hover{
+    transform: scale(1.5);
 }
