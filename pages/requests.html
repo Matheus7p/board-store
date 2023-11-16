@@ -21,7 +21,7 @@
                 <a class="navText" href="/requests">Pedidos</a>
             </li>
             <button class="cartBtn justify-content-end" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-            aria-controls="offcanvasRight">
+            aria-controls="offcanvasRight" id="openCart">
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-cart4"
                     viewBox="0 0 16 16">
                     <path
@@ -31,6 +31,12 @@
         </ul>
     </header>
 
+    <main>
+        <div class="container">
+            <p><b style="color: white; font-size: 20px;">Meus Pedidos</b></p>
+            <div id="orderContainer"></div>
+        </div>
+    </main>
 
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header">
@@ -39,12 +45,111 @@
             </h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <div class="offcanvas-body">...</div>
+        <div class="offcanvas-body" id="cartContainer">...</div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
+
+        <script>
+            /* Manipulando o Carrinho */
+            const order = document.getElementById('orderContainer');
+    
+            /* Exibindo Jogos no Carrinho */
+            async function loadItensOrders() {
+                const userId = 1;
+    
+                try {
+                    const response = await fetch(`/itemsOrders/get?userId=${userId}`, {
+                        method: 'POST' // Alterado para método GET
+                    });
+    
+                    if (response.ok) {
+                        const itensOrders = await response.json();
+                        order.innerHTML = '';
+    
+                        if (itensOrders.length === 0) {
+                            const message = document.createElement('div');
+                            message.textContent = "Você não possui nenhum Pedido !";
+                            order.appendChild(message);
+                        } else {
+                            const fragment = document.createDocumentFragment();
+                            let currentOrderId = itensOrders[0].idPedido;
+    
+                            itensOrders.forEach((item, index) => {
+                                const orderItem = createOrderItemElement(item);
+                                fragment.appendChild(orderItem);
+    
+                                // Verifica se o próximo item tem um idPedido diferente
+                                if (index < itensOrders.length - 1 && item.idPedido !== itensOrders[index + 1].idPedido) {
+                                    const divider = document.createElement('hr');
+                                    fragment.appendChild(divider);
+                                }
+                            });
+    
+                            order.appendChild(fragment);
+                        }
+                    }
+                    else {
+                        console.error('301 - Erro ao obter a lista de mangas.');
+                    }
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+    
+            /* Cria uma estrutura individual para cada Mangá disponível no Banco */
+            function createOrderItemElement(item) {
+               
+                const card = document.createElement('div');
+                card.className = 'cardRequest cardPurple mb-1';
+                card.style = 'width: 18rem';
+                const cardBody = document.createElement('div');
+                cardBody.className = 'card-body';
+    
+                const h5 = document.createElement('h5');
+                h5.className = 'card-titleRequest';
+                h5.textContent = `Pedido: ${item.idRequest}`
+    
+                const h6 = document.createElement('h6');
+                h6.style = 'color: white;'
+                h6.className = 'card-subtitleRequest mb-2 ';
+                h6.textContent = `Jogo: ${item.nameBoard}`
+    
+                const pQuantidade = document.createElement('p');
+                pQuantidade.className = 'card-text';
+                pQuantidade.textContent = `Quantidade: ${item.amount}`
+    
+                const pPreco = document.createElement('p');
+                pPreco.className = 'card-textRequest';
+                pPreco.textContent = `Preço: ${item.valueBoard}`
+    
+                let dataFormatar = new Date(item.dataRequest);
+                const dia = String(dataFormatar.getDate()).padStart(2, '0');
+                const mes = String(dataFormatar.getMonth() + 1).padStart(2, '0');
+                const ano = dataFormatar.getFullYear();
+                const dataFinal = `${dia}/${mes}/${ano}`;
+                const pData = document.createElement('p');
+                pData.className = 'card-text';
+                pData.textContent = `Preço: ${dataFinal}`
+    
+                cardBody.appendChild(h5);
+                cardBody.appendChild(h6);
+                cardBody.appendChild(pQuantidade);
+                cardBody.appendChild(pPreco);
+    
+                card.appendChild(cardBody);
+    
+                return card;
+            }
+    
+    
+            /* Busca e Exibe os Pedidos quando a pagina Carrega totalmente */
+            document.addEventListener('DOMContentLoaded', loadItensOrders);
+        </script>
+
+<script src="../js/cart.js"></script>
 </body>
 
 </html>

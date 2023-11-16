@@ -16,3 +16,8 @@ connection.connect((err) => {
 });
 
 module.exports = connection;
+
+/* Erro 301 - Erro na Pagina Web
+   Erro 302 - Erro no Express
+   Erro 303 - Erro no Banco de Dados
+*/
