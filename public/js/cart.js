@@ -78,7 +78,7 @@ function createCartItemElement(board) {
 
     const boardsGames = document.createElement('div');
     boardsGames.className = 'btn divBoardCart';
-    boardsGames.textContent = ` Jogo: ${board.nameBoard}, Preço: ${board.valueBoard}, Quantidade: ${board.quantityCart}`;
+    boardsGames.textContent = ` Jogo: ${board.nameBoard}, Preço Unitário: ${board.valueBoard}, Quantidade: ${board.quantityCart}`;
     const deleteButton = document.createElement('button');
 
     deleteButton.textContent = 'Deletar';

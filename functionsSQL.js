@@ -2,7 +2,7 @@ const connection = require('./conecction');
 const util = require('util');
 const queryAsync = util.promisify(connection.query).bind(connection);
 
-function add( boardId, userId, quantity, callback) {
+function add( boardId, quantity, userId, callback) {
     const sql = 'INSERT INTO cart(idBoard, idUsuario, quantityCart) VALUES (?, ?, ?);';
     connection.query(sql, [boardId, userId, quantity], (error, results, fields) => {
         if (error) {
